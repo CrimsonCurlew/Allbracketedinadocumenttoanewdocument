@@ -1,0 +1,4 @@
+//put both into excel extracted intext citations in one column and presumme incomplete reference list in another
+//NOT Working need to process
+
+//=IF(ISNUMBER(MATCH(A1, B:B, 0)), "Match", "No Match")
