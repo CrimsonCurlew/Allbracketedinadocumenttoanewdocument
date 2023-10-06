@@ -1,0 +1,27 @@
+Sub ExtractTextInBracketsToNewDocument()
+    Dim doc As Document
+    Dim rng As Range
+    Dim newText As String
+    Dim newDoc As Document
+
+    Set doc = ActiveDocument
+    Set rng = doc.Content
+
+    ' Initialize a variable to store extracted text
+    newText = ""
+
+    ' Loop through the document to find and extract text within brackets
+    With rng.Find
+        .ClearFormatting
+        .Text = "\(*\)" ' Pattern to match text within parentheses
+        .MatchWildcards = True
+
+        Do While .Execute
+            newText = newText & rng.Text & vbCrLf ' Append to the extracted text with a line break
+        Loop
+    End With
+
+    ' Create a new document and insert the extracted text
+    Set newDoc = Documents.Add
+    newDoc.Content.InsertAfter newText
+End Sub
